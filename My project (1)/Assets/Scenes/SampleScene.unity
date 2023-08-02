@@ -628,7 +628,6 @@ GameObject:
   - component: {fileID: 724335954}
   - component: {fileID: 724335956}
   - component: {fileID: 724335955}
-  - component: {fileID: 724335957}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -695,21 +694,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &724335957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724335953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237f4f392bb36e84f866fb01d80b896f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childrens: []
-  colors: []
-  i: 0
 --- !u!1 &882242384
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,8 +903,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c4ed436d70f09954aa8e61d0c01d54ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1976,6 +1959,11 @@ MonoBehaviour:
   resultText2: {fileID: 882242386}
   resultText3: {fileID: 2093827499}
   i: 1
+  childrens:
+  - {fileID: 981129810}
+  - {fileID: 1761434593}
+  - {fileID: 1401851688}
+  - {fileID: 1735333514}
 --- !u!1 &2059769946
 GameObject:
   m_ObjectHideFlags: 0

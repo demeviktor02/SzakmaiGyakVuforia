@@ -12,10 +12,18 @@ public class SQL : MonoBehaviour
     public int i = 0;
     List<User> users = new List<User>();
 
+    public List<Transform> childrens;
+
     // Start is called before the first frame update
     void Start()
     {
-        string connString = "Data Source = DESKTOP-FRRK8IE; Initial Catalog=teszt; Integrated Security=true";
+        //int childrensCount = transform.childCount;
+        //for (int i = 0; i < childrensCount; ++i)
+        //{
+        //    childrens.Add(transform.GetChild(i));
+        //}
+
+        string connString = "Data Source = DESKTOP-B1PN1D1; Initial Catalog=teszt; Integrated Security=true";
         System.Diagnostics.Debug.WriteLine(connString);
 
         SqlConnection con = new SqlConnection(connString);
@@ -28,7 +36,7 @@ public class SQL : MonoBehaviour
         {
             //String output = "Output" + reader.GetValue(0);
             //Debug.Log(output);
-            User user = new User(Convert.ToString(reader.GetValue(0)), Convert.ToString(reader.GetValue(1)), Convert.ToString(reader.GetValue(2)));
+            User user = new User(Convert.ToString(reader.GetValue(0)), Convert.ToString(reader.GetValue(1)), Convert.ToString(reader.GetValue(2)), childrens[i]);
             users.Add(user);
             //resultText1.text = Convert.ToString(reader.GetValue(0)); 
             //resultText2.text = Convert.ToString(reader.GetValue(1));
@@ -46,12 +54,15 @@ public class SQL : MonoBehaviour
         public string Age { get; set; }
         public string Sex { get; set; }
 
+        public Transform Modelpart { get; set; }
 
-        public User(string Name, string Age, string Sex)
+
+        public User(string Name, string Age, string Sex, Transform modelpart)
         {
             this.Name = Name;
             this.Age = Age;
             this.Sex = Sex;
+            this.Modelpart = modelpart;
         }
 
         public override string ToString()
@@ -65,25 +76,45 @@ public class SQL : MonoBehaviour
         //PreviousUser();
     }
     public void NextUser()
-    {     
-        if (i< users.Count-1) 
+    {
+        //if (i< users.Count-1) 
+        //{
+        //    i=i+1; 
+        //    resultText1.text = users[i].Name; 
+        //    resultText2.text = users[i].Age;
+        //    resultText3.text = users[i].Sex;
+        //    childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        //}
+
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        i++;
+
+        if (i == childrens.Count)
         {
-            i=i+1; 
-            resultText1.text = users[i].Name; 
-            resultText2.text = users[i].Age;
-            resultText3.text = users[i].Sex;               
+            i = 0;
         }
+
+        resultText1.text = users[i].Name;
+        resultText2.text = users[i].Age;
+        resultText3.text = users[i].Sex;
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+
+
     }
 
     public void PreviousUser()
     {
-        if ( i >= 1)
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        i--;
+
+        if (i == -1)
         {
-            i = i - 1;
-            resultText1.text = users[i].Name;
-            resultText2.text = users[i].Age;
-            resultText3.text = users[i].Sex;
-            
+            i = childrens.Count - 1;
         }
+
+        resultText1.text = users[i].Name;
+        resultText2.text = users[i].Age;
+        resultText3.text = users[i].Sex;
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 }

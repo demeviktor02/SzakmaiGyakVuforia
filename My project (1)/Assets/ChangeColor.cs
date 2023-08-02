@@ -22,7 +22,7 @@ public class ChangeColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
     public void NextGameobjectTurnRed()
@@ -31,11 +31,25 @@ public class ChangeColor : MonoBehaviour
 
         childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         i++;
-        if (i > childrensCount)
+        if (i == childrensCount)
         {
             i = 0;
         }
-        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         
+        
+    }
+
+    public void PreviousGameobjectTurnRed()
+    {
+        int childrensCount = transform.childCount;
+
+        childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        i--;
+        if (i == 0)
+        {
+            i = 4;
+        }
+
+
     }
 }
