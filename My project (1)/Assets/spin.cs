@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
-    public float rotationSpeed = 10f;
-
+    [SerializeField] float rotationSpeed = 100f;
+    bool dragging = false;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonUp(0))
+        {
+            dragging = false;
+        }
     }
 
     public void OnMouseDrag()
     {
-        float XaxisRotation = Input.GetAxis("Mouse X") * rotationSpeed;
-        float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
-
-        transform.Rotate(Vector3.down, XaxisRotation);
-        transform.Rotate(Vector3.right, YaxisRotation);
+        dragging = true;
     }
 
-    //public void RightRotate()
-    //{
-    //    transform.Rotate(new Vector3(spinSpeed * Time.deltaTime, 0f, 0f));
-    //}
+    private void FixedUpdate()
+    {
+        if (dragging)
+        {
+            float x = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
+            float y = Input.GetAxis("Mouse Y") * rotationSpeed * Time.fixedDeltaTime;
+
+            rb.AddTorque(Vector3.back * x);
+            rb.AddTorque(Vector3.right * y);
+        }
+
+        
+    }
+
 }
