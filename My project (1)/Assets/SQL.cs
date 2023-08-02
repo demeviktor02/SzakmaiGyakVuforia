@@ -11,6 +11,7 @@ public class SQL : MonoBehaviour
     public TMPro.TMP_Text resultText3;
     public int i = 0;
     List<User> users = new List<User>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class SQL : MonoBehaviour
         public string Name { get; set; }
         public string Age { get; set; }
         public string Sex { get; set; }
+
 
         public User(string Name, string Age, string Sex)
         {
@@ -84,5 +86,4 @@ public class SQL : MonoBehaviour
             
         }
     }
-    //Input.GetKeyDown(KeyCode.LeftArrow) && 
 }
