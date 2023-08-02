@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+
     public float spinSpeed = 60f;
 
     // Start is called before the first frame update

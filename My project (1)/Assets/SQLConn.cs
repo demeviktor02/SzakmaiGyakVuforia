@@ -30,8 +30,10 @@ using System.Data;
 
 public class SQLConn : MonoBehaviour
 {
-    private string connectionString = "Data Source=DESKTOP-FRRK8IE;Initial Catalog=teszt;User ID=DESKTOP-FRRK8IE\Ádõ;Password=";
-    private SqlConnection connection;
+    
+
+    //private string connectionString = "Data Source=DESKTOP-B1PN1D1;Initial Catalog=Test;User ID='User';Password=''";
+    //private SqlConnection connection;
 
     // Unity felületi elemek a táblázat megjelenítéséhez
     public Text resultText;
@@ -39,21 +41,31 @@ public class SQLConn : MonoBehaviour
     // Film osztály az adatok tárolásához
     private class Film
     {
-        public string cim;
-        public int ev;
-        public int hossz;
-        public string mufaj;
-        public string studioNev;
+        public string Name;
+        public string About;
+
     }
+
+        SqlConnection connection = new SqlConnection(
+        new SqlConnectionStringBuilder()
+        {
+            DataSource = "DESKTOP-B1PN1D1",
+            InitialCatalog = "Test",
+            UserID = "User",
+            Password = ""
+        }.ConnectionString);
 
     // Lista a Film objektumok tárolásához
     private List<Film> filmsList = new List<Film>();
 
     private void Start()
     {
+        
+
         // Adatbázis csatlakozás inicializálása
-        connection = new SqlConnection(connectionString);
+        //connection = new SqlConnection(connectionString);
         connection.Open();
+        Debug.Log("connection established");
 
         // Adatok lekérdezése és tárolása a filmsList-ben
         RetrieveDataFromDatabase();
@@ -65,17 +77,14 @@ public class SQLConn : MonoBehaviour
     // Adatok lekérdezése az adatbázisból
     private void RetrieveDataFromDatabase()
     {
-        SqlCommand cmd = new SqlCommand("SELECT cim, ev, hossz, mufaj, studioNev FROM Filmek", connection);
+        SqlCommand cmd = new SqlCommand("SELECT Name, About FROM Test", connection);
         SqlDataReader reader = cmd.ExecuteReader();
 
         while (reader.Read())
         {
             Film film = new Film();
-            film.cim = reader["cim"].ToString();
-            film.ev = int.Parse(reader["ev"].ToString());
-            film.hossz = int.Parse(reader["hossz"].ToString());
-            film.mufaj = reader["mufaj"].ToString();
-            film.studioNev = reader["studioNev"].ToString();
+            film.Name = reader["Name"].ToString();
+            film.About = reader["About"].ToString();
             filmsList.Add(film);
         }
 
@@ -88,7 +97,7 @@ public class SQLConn : MonoBehaviour
         string result = "Filmek:\n";
         foreach (Film film in filmsList)
         {
-            result += $"Cím: {film.cim}, Év: {film.ev}, Hossz: {film.hossz}, Mûfaj: {film.mufaj}, Stúdió: {film.studioNev}\n";
+            result += $"Name: {film.Name}, About: {film.About}\n";
         }
 
         resultText.text = result;
