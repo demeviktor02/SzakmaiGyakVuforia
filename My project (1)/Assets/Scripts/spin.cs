@@ -8,13 +8,11 @@ public class Spin : MonoBehaviour
     bool dragging = false;
     Rigidbody rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
