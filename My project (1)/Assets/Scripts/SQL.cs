@@ -17,7 +17,7 @@ public class SQL : MonoBehaviour
     void Start()
     {
 
-        string connString = "Data Source = DESKTOP-B1PN1D1; Initial Catalog=teszt; Integrated Security=true";
+        string connString = "Data Source = DESKTOP-FRRK8IE; Initial Catalog=teszt; Integrated Security=true";
         System.Diagnostics.Debug.WriteLine(connString);
 
         SqlConnection con = new SqlConnection(connString);
