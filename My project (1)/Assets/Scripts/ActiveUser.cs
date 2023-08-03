@@ -22,7 +22,10 @@ public class ActiveUser : MonoBehaviour
 
     void Update()
     {
-        
+        resultText1.text = sql.users[i].Name;
+        resultText2.text = sql.users[i].Age;
+        resultText3.text = sql.users[i].Sex;
+        sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
     public void NextUser()
@@ -37,10 +40,7 @@ public class ActiveUser : MonoBehaviour
             i = 0;
         }
 
-        resultText1.text = sql.users[i].Name;
-        resultText2.text = sql.users[i].Age;
-        resultText3.text = sql.users[i].Sex;
-        sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        
 
 
     }
@@ -55,9 +55,6 @@ public class ActiveUser : MonoBehaviour
             i = sql.childrens.Count - 1;
         }
 
-        resultText1.text = sql.users[i].Name;
-        resultText2.text = sql.users[i].Age;
-        resultText3.text = sql.users[i].Sex;
-        sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+
     }
 }
