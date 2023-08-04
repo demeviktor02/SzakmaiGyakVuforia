@@ -30,8 +30,10 @@ public class LoadingBar : MonoBehaviour
     //}
 
 
+
     public GameObject LoaderUI;
     public UnityEngine.UI.Slider progressSlider;
+    public TMPro.TMP_Text progressText;
 
     public void LoadScene(int index)
     {
@@ -51,8 +53,11 @@ public class LoadingBar : MonoBehaviour
         {
             progress = Mathf.MoveTowards(progress, asyncOperation.progress, Time.deltaTime);
             progressSlider.value = progress;
+            progressText.text = Mathf.Round(progress * 100f) + "%";
+
             if (progress >= 0.9f)
             {
+                progressText.text = Mathf.Round(progress * 100f) + 10 + "%";
                 progressSlider.value = 1;
                 asyncOperation.allowSceneActivation = true;
             }
