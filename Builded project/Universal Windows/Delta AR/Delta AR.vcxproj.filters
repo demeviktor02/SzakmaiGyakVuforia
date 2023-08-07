@@ -27,9 +27,12 @@
     </None>
     <None Include="StoreManifest.xml" />
     <AppxManifest Include="Package.appxmanifest" />
-    <ClCompile Include="App.cpp" />
-    <ClInclude Include="App.h" />
-    <ClCompile Include="Main.cpp" />
+    <ApplicationDefinition Include="App.xaml" />
+    <ClCompile Include="App.xaml.cpp" />
+    <ClInclude Include="App.xaml.h" />
+    <Page Include="MainPage.xaml" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClInclude Include="MainPage.xaml.h" />
     <ClCompile Include="pch.cpp" />
     <ClInclude Include="pch.h" />
     <None Include="WSATestCertificate.pfx" />
