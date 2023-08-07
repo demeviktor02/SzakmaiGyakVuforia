@@ -160,7 +160,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DeltaTech.DeltaAR
-    Standalone: com.DefaultCompany.My-project--1-
+    Standalone: com.Delta-Tech.Delta-AR
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -877,11 +877,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: My project (1)
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Delta-Tech
+  metroCertificateIssuer: Delta-Tech
+  metroCertificateNotAfter: 80353249cbe5da01
   metroApplicationDescription: My project (1)
   wsaImages: {}
   metroTileShortName: 

@@ -62,6 +62,7 @@ public class LoadingBar : MonoBehaviour
                 asyncOperation.allowSceneActivation = true;
             }
             yield return null;
+
         }
     }
 }
