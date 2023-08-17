@@ -1,0 +1,96 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class SQL3 : MonoBehaviour
+{
+
+    public ObservableCollection<User> users = new ObservableCollection<User>();
+
+    public GameObject activeUser;
+
+    public int i = 0;
+
+    public List<Transform> childrens;
+
+    private void Start()
+    {
+        string connectionString = "Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;User ID=sa;Password=123"; //@"Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;Integrated Security=SSPI"
+        //GetUsers(connectionString);
+        users = GetUsers(connectionString);
+        activeUser.gameObject.SetActive(true);
+    }
+
+    public ObservableCollection<User> GetUsers(string connectionString)
+    {
+        const string GetUsersQuery = "select * from [testTable]";
+
+        //var users = new ObservableCollection<User>();
+        try
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = GetUsersQuery;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var user = new User();
+                                user.Name = reader.GetString(0);
+                                user.Age = Convert.ToString(reader.GetValue(1));
+                                user.Sex = reader.GetString(2);
+                                user.Modelpart = childrens[i];
+                                users.Add(user);
+                                i++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return users;
+        }
+        catch (Exception eSql)
+        {
+            Debug.Log($"Exception: {eSql.Message}");
+        }
+        return null;
+    }
+}
+
+public class User
+{
+    public string Name { get; set; }
+    public string Age { get; set; }
+    public string Sex { get; set; }
+    public Transform Modelpart { get; set; }
+
+
+    public User(string Name, string Age, string Sex, Transform modelpart)
+    {
+        this.Name = Name;
+        this.Age = Age;
+        this.Sex = Sex;
+        this.Modelpart = modelpart;
+    }
+
+    public User() { }
+
+    public override string ToString()
+    {
+        return "Person: " + this.Name + " Age: " + this.Age + "Sex: " + this.Sex;
+    }
+}
+
+
+
+

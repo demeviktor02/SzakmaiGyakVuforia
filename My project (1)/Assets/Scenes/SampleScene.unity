@@ -218,6 +218,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1873694150}
+        m_TargetAssemblyTypeName: SQL2, Assembly-CSharp
+        m_MethodName: asd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &210348633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aa88eb2bf3156449c28e59f1edb7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 0.4
+  rotationSpeed: 20
 --- !u!54 &724335956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -934,7 +946,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &981129813
 MeshRenderer:
@@ -1730,7 +1742,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1401851690
 MeshRenderer:
@@ -1969,7 +1981,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1735333516
 MeshRenderer:
@@ -2088,7 +2100,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1761434595
 MeshRenderer:
@@ -2163,6 +2175,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1873694148}
   - component: {fileID: 1873694149}
+  - component: {fileID: 1873694150}
+  - component: {fileID: 1873694151}
   m_Layer: 0
   m_Name: SQL
   m_TagString: Untagged
@@ -2192,18 +2206,52 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873694146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d26244ffd44914694c6a88117d64a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1873694150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873694146}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38fcaa833a7d054f8d675d7d7787d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resultText1: {fileID: 1204717659}
+  resultText2: {fileID: 882242386}
+  resultText3: {fileID: 2093827499}
+  i: 0
+  activeUser: {fileID: 2014230484}
   childrens:
   - {fileID: 981129810}
   - {fileID: 1761434593}
   - {fileID: 1401851688}
   - {fileID: 1735333514}
-  i: 0
+--- !u!114 &1873694151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873694146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626b6a93bb2e36642be9c90d362adff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   activeUser: {fileID: 2014230484}
+  i: 0
+  childrens:
+  - {fileID: 981129810}
+  - {fileID: 1761434593}
+  - {fileID: 1401851688}
+  - {fileID: 1735333514}
 --- !u!1 &2014230484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,7 +2285,7 @@ MonoBehaviour:
   resultText2: {fileID: 882242386}
   resultText3: {fileID: 2093827499}
   i: 0
-  sql: {fileID: 1873694149}
+  sql: {fileID: 1873694151}
 --- !u!4 &2014230486
 Transform:
   m_ObjectHideFlags: 0
@@ -2564,9 +2612,9 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1296692549}
-  - {fileID: 1705965832}
-  - {fileID: 2059769949}
-  - {fileID: 1873694148}
   - {fileID: 2014230486}
+  - {fileID: 1705965832}
   - {fileID: 2098707438}
+  - {fileID: 2059769949}
+  - {fileID: 1296692549}
+  - {fileID: 1873694148}

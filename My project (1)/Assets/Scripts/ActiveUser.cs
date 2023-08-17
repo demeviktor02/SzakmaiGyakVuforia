@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class ActiveUser : MonoBehaviour
 {
+    
+
     public TMPro.TMP_Text resultText1;
     public TMPro.TMP_Text resultText2;
     public TMPro.TMP_Text resultText3;
     public int i = 0;
-    public SQL sql; 
+    public SQL3 sql; 
+
+
 
     void Start()
     {
-        sql.GetComponent<SQL>();
+        
+        sql.GetComponent<SQL3>();
         resultText1.text = sql.users[0].Name;
         resultText2.text = sql.users[0].Age;
         resultText3.text = sql.users[0].Sex;
