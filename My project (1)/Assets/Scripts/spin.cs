@@ -7,6 +7,8 @@ public class Spin : MonoBehaviour
     [SerializeField] float rotationSpeed = 100f;
     bool dragging = false;
     Rigidbody rb;
+    public GameObject ImageTarget;
+
 
     void Start()
     {
@@ -18,12 +20,15 @@ public class Spin : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             dragging = false;
+            rb.angularVelocity = Vector3.zero;
+            //rb.isKinematic = true;
         }
     }
 
     public void OnMouseDrag()
     {
         dragging = true;
+        //rb.isKinematic = false;
     }
 
     private void FixedUpdate()
@@ -36,8 +41,18 @@ public class Spin : MonoBehaviour
             rb.AddTorque(Vector3.back * x);
             rb.AddTorque(Vector3.right * y);
         }
+   
 
-        
+
     }
+
+    public void GetBackToNormalRotation()
+    {
+        //rb.isKinematic = false;
+        transform.position = ImageTarget.transform.position;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
+        //rb.isKinematic = true;
+    }
+
 
 }
