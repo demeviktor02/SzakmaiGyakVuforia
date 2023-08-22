@@ -17,10 +17,11 @@ public class SQL3 : MonoBehaviour
 
     public List<Transform> childrens;
 
+    public GameObject warningSing;
+
     private void Start()
     {
         string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt;User ID=sa;Password=123"; //@"Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;Integrated Security=SSPI"
-        //GetUsers(connectionString);
         users = GetUsers(connectionString);
         activeUser.gameObject.SetActive(true);
     }
@@ -29,7 +30,6 @@ public class SQL3 : MonoBehaviour
     {
         const string GetUsersQuery = "select * from [testTable]";
 
-        //var users = new ObservableCollection<User>();
         try
         {
             using (var conn = new SqlConnection(connectionString))
@@ -65,6 +65,7 @@ public class SQL3 : MonoBehaviour
         }
         catch (Exception eSql)
         {
+            warningSing.SetActive(true);
             Debug.Log($"Exception: {eSql.Message}");
             users.Add(new User("S25", "10", "Working", childrens[0]));
             users.Add(new User("S30", "2", "Loading", childrens[1]));

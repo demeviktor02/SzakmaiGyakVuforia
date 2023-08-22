@@ -7,45 +7,28 @@ using UnityEngine.UI;
 
 public class LoadingBar : MonoBehaviour
 {
-    //public GameObject LoadingScreen;
-    //public UnityEngine.UI.Slider slider;
-
-
-    //public void LoadLevel(int sceneIndex)
-    //{
-    //    StartCoroutine(Load(sceneIndex));
-    //}
-
-    //IEnumerator Load(int sceneIndex)
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-    //    LoadingScreen.SetActive(true);
-    //    while (!operation.isDone)
-    //    {
-    //        float progress = Mathf.Clamp01(operation.progress / .9f);
-    //        slider.value = progress;
-    //        //progressText.text = progress * 100f + "%";
-    //        yield return null;
-    //    }
-    //}
-
-
 
     public GameObject LoaderUI;
     public UnityEngine.UI.Slider progressSlider;
     public TMPro.TMP_Text progressText;
+    public Animator animator;
 
     public void LoadScene(int index)
     {
+        
         StartCoroutine(LoadScene_Coroutine(index));
     }
 
+
     public IEnumerator LoadScene_Coroutine(int index)
     {
+        animator.Play("Loading");
+        yield return new WaitForSeconds(0.7f);
+
         progressSlider.value = 0;
         LoaderUI.SetActive(true);
 
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(1);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
         asyncOperation.allowSceneActivation = false;
         float progress = 0;
 
@@ -64,5 +47,17 @@ public class LoadingBar : MonoBehaviour
             yield return null;
 
         }
+    }
+
+    public IEnumerator QuitAnimation()
+    {
+        animator.Play("Exit");
+        yield return new WaitForSeconds(1f);
+        Application.Quit();
+    }
+
+    public void Quit()
+    {
+        StartCoroutine(QuitAnimation());
     }
 }

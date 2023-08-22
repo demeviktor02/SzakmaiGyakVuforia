@@ -32,10 +32,7 @@ public class ObjectClick : MonoBehaviour
         {
             OverGameObject(hit1.collider.gameObject);
         }
-        //else
-        //{
-        //    NotOverGameObject(hit1.collider.gameObject);
-        //}
+
     }
 
     private bool LookForGameObject(out RaycastHit hit)

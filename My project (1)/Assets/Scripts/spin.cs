@@ -21,14 +21,12 @@ public class Spin : MonoBehaviour
         {
             dragging = false;
             rb.angularVelocity = Vector3.zero;
-            //rb.isKinematic = true;
         }
     }
 
     public void OnMouseDrag()
     {
         dragging = true;
-        //rb.isKinematic = false;
     }
 
     private void FixedUpdate()
@@ -48,10 +46,8 @@ public class Spin : MonoBehaviour
 
     public void GetBackToNormalRotation()
     {
-        //rb.isKinematic = false;
         transform.position = ImageTarget.transform.position;
         transform.rotation = new Quaternion(0, 0, 0, 0);
-        //rb.isKinematic = true;
     }
 
 
