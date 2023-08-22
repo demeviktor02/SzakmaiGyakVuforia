@@ -19,7 +19,7 @@ public class SQL3 : MonoBehaviour
 
     private void Start()
     {
-        string connectionString = "Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;User ID=sa;Password=123"; //@"Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;Integrated Security=SSPI"
+        string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt;User ID=sa;Password=123"; //@"Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;Integrated Security=SSPI"
         //GetUsers(connectionString);
         users = GetUsers(connectionString);
         activeUser.gameObject.SetActive(true);
@@ -55,6 +55,10 @@ public class SQL3 : MonoBehaviour
                         }
                     }
                 }
+                else
+                {
+                    
+                }
             }
 
             return users;
@@ -62,8 +66,12 @@ public class SQL3 : MonoBehaviour
         catch (Exception eSql)
         {
             Debug.Log($"Exception: {eSql.Message}");
+            users.Add(new User("S25", "10", "Working", childrens[0]));
+            users.Add(new User("S30", "2", "Loading", childrens[1]));
+            users.Add(new User("S45", "50", "Working", childrens[2]));
+            users.Add(new User("S50", "100", "Sleeping", childrens[3]));
         }
-        return null;
+        return users;
     }
 }
 

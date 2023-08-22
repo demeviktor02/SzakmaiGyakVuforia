@@ -1,2 +1,0 @@
-DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
-ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
