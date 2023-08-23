@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SQL3 : MonoBehaviour
 {
@@ -19,9 +21,32 @@ public class SQL3 : MonoBehaviour
 
     public GameObject warningSing;
 
+    public GameObject androidPanel;
+
+    public TMPro.TMP_InputField connectionStringText;
+
     private void Start()
     {
-        string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt;User ID=sa;Password=123"; //@"Data Source=DESKTOP-B1PN1D1;Initial Catalog=teszt;Integrated Security=SSPI"
+        string connectionString;
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            androidPanel.SetActive(true);
+
+        }
+        else
+        {
+            connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt;User ID=sa;Password=123";
+            users = GetUsers(connectionString);
+            activeUser.gameObject.SetActive(true);
+        }
+        
+
+    }
+
+    public void AndroidConnect()
+    {
+        string connectionString = "Data Source=" + connectionStringText.text + ",1433; Initial Catalog=teszt;User ID=sa;Password=123";
         users = GetUsers(connectionString);
         activeUser.gameObject.SetActive(true);
     }
@@ -74,6 +99,25 @@ public class SQL3 : MonoBehaviour
         }
         return users;
     }
+
+    //public void GetIp()
+    //{
+    //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+    //    {
+    //        if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+    //        {
+    //            Debug.Log(ni.Name);
+    //            foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+    //            {
+    //                if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+    //                {
+    //                    Debug.Log("Ezleszaz: ");
+    //                    Debug.Log(ip.Address.ToString());
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }
 
 public class User

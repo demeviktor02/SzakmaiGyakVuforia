@@ -9,7 +9,7 @@ PlayerSettings:
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
   defaultScreenOrientation: 3
-  targetDevice: 2
+  targetDevice: 0
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Delta-Tech
@@ -161,6 +161,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.DeltaTech.DeltaAR
     Standalone: com.Delta-Tech.Delta-AR
+    iPhone: com.Delta-Tech.Delta-AR
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -893,6 +894,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
+      RemoteSystem: False
       PrivateNetworkClientServer: True
       InternetClientServer: True
       InternetClient: True
