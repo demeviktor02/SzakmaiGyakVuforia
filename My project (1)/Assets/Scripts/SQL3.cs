@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class SQL3 : MonoBehaviour
 {
 
-    public ObservableCollection<User> users = new ObservableCollection<User>();
+    public ObservableCollection<Machine> machines = new ObservableCollection<Machine>();
 
     public GameObject activeUser;
 
@@ -25,9 +25,10 @@ public class SQL3 : MonoBehaviour
 
     public TMPro.TMP_InputField connectionStringText;
 
+    public string connectionString = "Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy;User ID=FSE;Password=1234";
+
     private void Start()
     {
-        string connectionString;
 
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -36,24 +37,31 @@ public class SQL3 : MonoBehaviour
         }
         else
         {
-            connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt;User ID=sa;Password=123";
-            users = GetUsers(connectionString);
+            InvokeRepeating("WaitForSql", 0, 1.0f);
             activeUser.gameObject.SetActive(true);
         }
         
 
     }
 
+    public void WaitForSql()
+    {
+        i = 0;
+        machines.Clear();
+        machines = GetMachines(connectionString);
+        Debug.Log("Lefut");
+    }
+
     public void AndroidConnect()
     {
         string connectionString = "Data Source=" + connectionStringText.text + ",1433; Initial Catalog=teszt;User ID=sa;Password=123";
-        users = GetUsers(connectionString);
+        machines = GetMachines(connectionString);
         activeUser.gameObject.SetActive(true);
     }
 
-    public ObservableCollection<User> GetUsers(string connectionString)
+    public ObservableCollection<Machine> GetMachines(string connectionString)
     {
-        const string GetUsersQuery = "select * from [testTable]";
+        const string GetUsersQuery = "select * from [WSStates]";
 
         try
         {
@@ -69,12 +77,21 @@ public class SQL3 : MonoBehaviour
                         {
                             while (reader.Read())
                             {
-                                var user = new User();
-                                user.Name = reader.GetString(0);
-                                user.Age = Convert.ToString(reader.GetValue(1));
-                                user.Sex = reader.GetString(2);
-                                user.Modelpart = childrens[i];
-                                users.Add(user);
+                                var machine = new Machine();
+                                machine.Name = reader.GetString(0);
+                                machine.SwitcedOff = Convert.ToInt32(reader.GetValue(1));
+                                machine.Mode = Convert.ToInt32(reader.GetValue(2));
+                                machine.ConveyorState = "ConveyorState"; //reader.GetString(3);   
+                                machine.CounterOk = Convert.ToInt32(reader.GetValue(5));
+                                machine.CounterNok = Convert.ToInt32(reader.GetValue(6));
+                                machine.AlarmExist = Convert.ToInt32(reader.GetValue(7));
+                                machine.WarningExist = Convert.ToInt32(reader.GetValue(8));
+                                machine.Homing = Convert.ToInt32(reader.GetValue(9));
+                                machine.SafetyReady = Convert.ToInt32(reader.GetValue(10));
+                                machine.Run = Convert.ToInt32(reader.GetValue(11));
+
+                                //machine.Modelpart = childrens[i];
+                                machines.Add(machine);
                                 i++;
                             }
                         }
@@ -86,62 +103,58 @@ public class SQL3 : MonoBehaviour
                 }
             }
 
-            return users;
+            return machines;
         }
         catch (Exception eSql)
         {
-            warningSing.SetActive(true);
+            //warningSing.SetActive(true);
             Debug.Log($"Exception: {eSql.Message}");
-            users.Add(new User("S25", "10", "Working", childrens[0]));
-            users.Add(new User("S30", "2", "Loading", childrens[1]));
-            users.Add(new User("S45", "50", "Working", childrens[2]));
-            users.Add(new User("S50", "100", "Sleeping", childrens[3]));
+            //users.Add(new User("S25", "10", "Working", childrens[0]));
+            //users.Add(new User("S30", "2", "Loading", childrens[1]));
+            //users.Add(new User("S45", "50", "Working", childrens[2]));
+            //users.Add(new User("S50", "100", "Sleeping", childrens[3]));
         }
-        return users;
+        return machines;
     }
 
-    //public void GetIp()
-    //{
-    //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-    //    {
-    //        if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
-    //        {
-    //            Debug.Log(ni.Name);
-    //            foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-    //            {
-    //                if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-    //                {
-    //                    Debug.Log("Ezleszaz: ");
-    //                    Debug.Log(ip.Address.ToString());
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+
 }
 
-public class User
+public class Machine
 {
     public string Name { get; set; }
-    public string Age { get; set; }
-    public string Sex { get; set; }
-    public Transform Modelpart { get; set; }
+    public int SwitcedOff { get; set; }
+    public int Mode { get; set; }
+    public string ConveyorState { get; set; }
+    public int CounterOk { get; set; }
+    public int CounterNok { get; set; }
+    public int AlarmExist { get; set; }
+    public int WarningExist { get; set; }
+    public int Homing { get; set; }
+    public int SafetyReady { get; set; }
+    public int Run { get; set; }
+    //public Transform Modelpart { get; set; }
 
 
-    public User(string Name, string Age, string Sex, Transform modelpart)
+    public Machine() { }
+
+    public Machine(string name, int switcedOff, int mode, string conveyorState, int counterOk, int counterNok, 
+        int alarmExist, int warningExist, int homing, int safetyReady, int run)//Transform modelpart
     {
-        this.Name = Name;
-        this.Age = Age;
-        this.Sex = Sex;
-        this.Modelpart = modelpart;
+        Name = name;
+        SwitcedOff = switcedOff;
+        Mode = mode;
+        ConveyorState = conveyorState;
+        CounterOk = counterOk;
+        CounterNok = counterNok;
+        AlarmExist = alarmExist;
+        WarningExist = warningExist;
+        Homing = homing;
+        SafetyReady = safetyReady;
+        Run = run;
+        //Modelpart = modelpart;
     }
 
-    public User() { }
-
-    public override string ToString()
-    {
-        return "Person: " + this.Name + " Age: " + this.Age + "Sex: " + this.Sex;
-    }
 }
 
 
