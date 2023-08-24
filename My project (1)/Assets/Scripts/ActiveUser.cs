@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class ActiveUser : MonoBehaviour
 {
@@ -20,8 +23,8 @@ public class ActiveUser : MonoBehaviour
     public TMPro.TMP_Text SafetyReadyText;
     public TMPro.TMP_Text RunText;
     public int i = 0;
-    public SQL3 sql; 
-
+    public SQL3 sql;
+    public RawImage modeImage;
 
 
     void Start()
@@ -46,17 +49,12 @@ public class ActiveUser : MonoBehaviour
     {
         NameText.text = sql.machines[i].Name;
 
-        if (Convert.ToString(sql.machines[i].SwitcedOff) == "0")
-        {
-            SwitchedOffText.text = "System Running";
-        }
-        else
-        {
-            SwitchedOffText.text = "System is not Running";
-        }
-        
+        isSwitchedOff(sql.machines[i].SwitcedOff);
 
         ModeText.text = Convert.ToString(sql.machines[i].Mode);
+
+        ModeColor(sql.machines[i].Mode);
+
         ConveyorStateText.text = sql.machines[i].ConveyorState;
         CounterOKText.text = Convert.ToString(sql.machines[i].CounterOk);
         CounterNOKText.text = Convert.ToString(sql.machines[i].CounterNok);
@@ -66,6 +64,39 @@ public class ActiveUser : MonoBehaviour
         SafetyReadyText.text = Convert.ToString(sql.machines[i].SafetyReady);
         RunText.text = Convert.ToString(sql.machines[i].Run);
         //sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+    }
+
+    public void isSwitchedOff(int sOff)
+    {
+        if(sOff==0)
+            SwitchedOffText.text = "System Running";
+        else SwitchedOffText.text = "System is not Running";
+    }
+
+    public void ModeColor(int color)
+    {
+        switch (color)
+        {
+            case 0:
+                modeImage.gameObject.GetComponent<RawImage>().color= new UnityEngine.Color(255, 255, 255); break;
+            case 1:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(0, 255, 0); break;
+            case 2:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(1.0f, 0.64f, 0.0f); break;//UnityEngine.Color.magenta;
+            case 3:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(255, 255, 0); break;
+            case 4:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(255, 0, 0); break;
+            case 5:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(0, 255, 255); break;
+            case 6:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(204, 153, 0); break;
+            case 7:
+                modeImage.gameObject.GetComponent<RawImage>().color = new UnityEngine.Color(0, 204, 0); break;
+            default: Debug.Log("nemjo a szám"); break;
+
+
+        }       
     }
 
     public void NextUser()

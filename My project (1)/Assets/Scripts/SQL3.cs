@@ -25,7 +25,7 @@ public class SQL3 : MonoBehaviour
 
     public TMPro.TMP_InputField connectionStringText;
 
-    public string connectionString = "Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy;User ID=FSE;Password=1234";
+    public string connectionString = "Data Source=DESKTOP-FRRK8IE,1433; Initial Catalog=testDatabase; User ID=sa;Password=password";
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class SQL3 : MonoBehaviour
         }
         else
         {
-            InvokeRepeating("WaitForSql", 0, 1.0f);
+            InvokeRepeating("WaitForSql", 0, 2.0f);
             activeUser.gameObject.SetActive(true);
         }
         
@@ -61,7 +61,7 @@ public class SQL3 : MonoBehaviour
 
     public ObservableCollection<Machine> GetMachines(string connectionString)
     {
-        const string GetUsersQuery = "select * from [WSStates]";
+        const string GetUsersQuery = "select * from [WSState]";
 
         try
         {
