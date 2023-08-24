@@ -6505,7 +6505,7 @@ GameObject:
   - component: {fileID: 1993692680}
   - component: {fileID: 1993692679}
   m_Layer: 5
-  m_Name: EnterPanel
+  m_Name: EnterPanel (SETACTIVEBEFROEBUILD)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

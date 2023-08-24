@@ -18,9 +18,12 @@ public class SettingsMenu : MonoBehaviour
 
     public Toggle FullScreentoggle;
 
+    public Animator darkmodeAnimator;
+
 
     void Start()
     {
+
         FullScreentoggle.isOn = Screen.fullScreen;
 
         resolutions = Screen.resolutions;
@@ -68,5 +71,17 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullscreen)
     {
         Screen.SetResolution(currentResolution.width, currentResolution.height, isFullscreen);
+    }
+
+    public void SetDarkMode(bool isDarkmode)
+    {
+        if (isDarkmode == true)
+        {
+            darkmodeAnimator.Play("DarkMode");
+        }
+        else if (isDarkmode == false)
+        {
+            darkmodeAnimator.Play("LightMode");
+        }
     }
 }
