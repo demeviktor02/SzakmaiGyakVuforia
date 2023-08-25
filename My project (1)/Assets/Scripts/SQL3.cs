@@ -25,7 +25,7 @@ public class SQL3 : MonoBehaviour
 
     public TMPro.TMP_InputField connectionStringText;
 
-    public string connectionString = "Data Source=DESKTOP-FRRK8IE,1433; Initial Catalog=testDatabase; User ID=sa;Password=password";
+    public string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
 
     private void Start()
     {
