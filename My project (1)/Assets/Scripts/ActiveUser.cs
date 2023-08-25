@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -108,31 +109,60 @@ public class ActiveUser : MonoBehaviour
 
     public void AlarmExist(int alarm)
     {
-
-        if (alarm != 0 && startedAlarmFlassing == false)
-        {
-            alarmImage.gameObject.SetActive(true);
-            StartCoroutine(Flashing(alarmImage, UnityEngine.Color.red, UnityEngine.Color.white));
-            startedAlarmFlassing = true;
-        }
+            if (alarm != 0 && startedAlarmFlassing == false)
+            {
+                alarmImage.gameObject.SetActive(true);
+                StartCoroutine(Flashing(alarmImage, UnityEngine.Color.red, UnityEngine.Color.white));
+                startedAlarmFlassing = true;
+            }
+            else if (alarm == 0 && startedAlarmFlassing == true)
+            {
+                StopAllCoroutines();
+                startedHomingflessing = false;
+                startedAlarmFlassing = false;
+                startedWarningFlassing = false;
+                alarmImage.gameObject.GetComponent<RawImage>().color = UnityEngine.Color.white;
+                alarmImage.gameObject.SetActive(false);
+            }
+        
     }
 
     public void WarningExist(int warning)
     {
-        if (warning != 0 && startedWarningFlassing == false)
-        {
-            StartCoroutine(Flashing(warningImage, new UnityEngine.Color(1.0f, 0.64f, 0.0f), UnityEngine.Color.white));
-            startedWarningFlassing = true;
-        }
+ 
+            if (warning != 0 && startedWarningFlassing == false)
+            {
+                StartCoroutine(Flashing(warningImage, new UnityEngine.Color(1.0f, 0.64f, 0.0f), UnityEngine.Color.white));
+                startedWarningFlassing = true;
+            }
+            else if (warning == 0 && startedWarningFlassing == true)
+            {
+                StopAllCoroutines();
+                startedHomingflessing = false;
+                startedAlarmFlassing = false;
+                startedWarningFlassing = false;
+                warningImage.gameObject.GetComponent<RawImage>().color = UnityEngine.Color.white;
+            }
+
     }
 
     public void Homing(int homing)
     {
-        if (homing != 0 && startedHomingflessing == false)
-        {
-            StartCoroutine(Flashing(homingImage, UnityEngine.Color.green, UnityEngine.Color.white));
-            startedHomingflessing = true;
-        }
+        
+            if (homing != 0 && startedHomingflessing == false)
+            {
+                StartCoroutine(Flashing(homingImage, UnityEngine.Color.green, UnityEngine.Color.white));
+                startedHomingflessing = true;
+            }
+            else if (homing == 0 && startedHomingflessing == true)
+            {
+                StopAllCoroutines();
+                startedHomingflessing = false;
+                startedAlarmFlassing = false;
+                startedWarningFlassing = false;
+                homingImage.gameObject.GetComponent<RawImage>().color = UnityEngine.Color.white;
+            }
+
     }
 
     public void isSafetyReady(int sReady)
