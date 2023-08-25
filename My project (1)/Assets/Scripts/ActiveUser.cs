@@ -47,7 +47,7 @@ public class ActiveUser : MonoBehaviour
 
         isSwitchedOff(sql.machines[i].SwitcedOff);
 
-        ModeText.text = Convert.ToString(sql.machines[i].Mode);
+        //ModeText.text = Convert.ToString(sql.machines[i].Mode);
         ModeColor(sql.machines[i].Mode);
 
         ConveyorStateText.text = sql.machines[i].ConveyorState;
@@ -56,19 +56,19 @@ public class ActiveUser : MonoBehaviour
 
         CounterNOKText.text = Convert.ToString(sql.machines[i].CounterNok);
 
-        AlarmExistText.text = Convert.ToString(sql.machines[i].AlarmExist);
+        //AlarmExistText.text = Convert.ToString(sql.machines[i].AlarmExist);
         AlarmExist(sql.machines[i].AlarmExist);
 
-        WarningExistText.text = Convert.ToString(sql.machines[i].WarningExist);
+        //WarningExistText.text = Convert.ToString(sql.machines[i].WarningExist);
         WarningExist(sql.machines[i].WarningExist);
 
-        HomingText.text = Convert.ToString(sql.machines[i].Homing);
+        //HomingText.text = Convert.ToString(sql.machines[i].Homing);
         Homing(sql.machines[i].Homing);
 
-        SafetyReadyText.text = Convert.ToString(sql.machines[i].SafetyReady);
+        //SafetyReadyText.text = Convert.ToString(sql.machines[i].SafetyReady);
         isSafetyReady(sql.machines[i].SafetyReady);
 
-        RunText.text = Convert.ToString(sql.machines[i].Run);
+        //RunText.text = Convert.ToString(sql.machines[i].Run);
         isRunning(sql.machines[i].Run);
         //sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }
