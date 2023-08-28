@@ -15,15 +15,9 @@ public class ActiveUser : MonoBehaviour
 
     public TMPro.TMP_Text NameText;
     public TMPro.TMP_Text SwitchedOffText;
-    public TMPro.TMP_Text ModeText;
     public TMPro.TMP_Text ConveyorStateText;
     public TMPro.TMP_Text CounterOKText;
     public TMPro.TMP_Text CounterNOKText;
-    public TMPro.TMP_Text AlarmExistText;
-    public TMPro.TMP_Text WarningExistText;
-    public TMPro.TMP_Text HomingText;
-    public TMPro.TMP_Text SafetyReadyText;
-    public TMPro.TMP_Text RunText;
     public int i = 0;
     public SQL3 sql;
     public RawImage modeImage;

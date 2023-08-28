@@ -107,12 +107,16 @@ public class SQL3 : MonoBehaviour
         }
         catch (Exception eSql)
         {
-            //warningSing.SetActive(true);
+            warningSing.SetActive(true);
             Debug.Log($"Exception: {eSql.Message}");
-            //users.Add(new User("S25", "10", "Working", childrens[0]));
-            //users.Add(new User("S30", "2", "Loading", childrens[1]));
-            //users.Add(new User("S45", "50", "Working", childrens[2]));
-            //users.Add(new User("S50", "100", "Sleeping", childrens[3]));
+            machines.Add(new Machine("Mes", 0, 3, "ConveyorState", 0, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST10", 0, 4, "ConveyorState", 0, 0, -1, -1, 0, 0, 0));
+            machines.Add(new Machine("ST20", 0, 0, "ConveyorState", 200, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST30", 0, 0, "ConveyorState", 300, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST40", 0, 0, "ConveyorState", 400, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST50", 1, 0, "ConveyorState", 400, 0, 0, 0, 1, 1, 1));
+            machines.Add(new Machine("ST80", 0, 1, "ConveyorState", 400, 20, 0, 0, -1, 1, 1));
+
         }
         return machines;
     }
@@ -133,13 +137,12 @@ public class Machine
     public int Homing { get; set; }
     public int SafetyReady { get; set; }
     public int Run { get; set; }
-    //public Transform Modelpart { get; set; }
 
 
     public Machine() { }
 
     public Machine(string name, int switcedOff, int mode, string conveyorState, int counterOk, int counterNok, 
-        int alarmExist, int warningExist, int homing, int safetyReady, int run)//Transform modelpart
+        int alarmExist, int warningExist, int homing, int safetyReady, int run)
     {
         Name = name;
         SwitcedOff = switcedOff;
@@ -152,7 +155,6 @@ public class Machine
         Homing = homing;
         SafetyReady = safetyReady;
         Run = run;
-        //Modelpart = modelpart;
     }
 
 }
