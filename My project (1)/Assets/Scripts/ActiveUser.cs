@@ -48,7 +48,6 @@ public class ActiveUser : MonoBehaviour
 
         isSwitchedOff(sql.machines[i].SwitcedOff);
 
-        //ModeText.text = Convert.ToString(sql.machines[i].Mode);
         ModeColor(sql.machines[i].Mode);
 
         ConveyorStateText.text = sql.machines[i].ConveyorState;
@@ -57,21 +56,39 @@ public class ActiveUser : MonoBehaviour
 
         CounterNOKText.text = Convert.ToString(sql.machines[i].CounterNok);
 
-        //AlarmExistText.text = Convert.ToString(sql.machines[i].AlarmExist);
         AlarmExist(sql.machines[i].AlarmExist);
 
-        //WarningExistText.text = Convert.ToString(sql.machines[i].WarningExist);
         WarningExist(sql.machines[i].WarningExist);
 
-        //HomingText.text = Convert.ToString(sql.machines[i].Homing);
         Homing(sql.machines[i].Homing);
 
-        //SafetyReadyText.text = Convert.ToString(sql.machines[i].SafetyReady);
         isSafetyReady(sql.machines[i].SafetyReady);
 
-        //RunText.text = Convert.ToString(sql.machines[i].Run);
         isRunning(sql.machines[i].Run);
-        //sql.childrens[i].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+    }
+
+    public void FindImageTarget(string TargetName)
+    {
+        switch (TargetName)
+        {
+            case "MESImageTarget":
+                i = 0; break;
+            case "ST10ImageTarget":
+                i = 1; break;
+            case "ST20ImageTarget":
+                i = 2; break;
+            case "ST30ImageTarget":
+                i = 3; break;
+            case "ST40ImageTarget":
+                i = 4; break;
+            case "ST50ImageTarget":
+                i = 5; break;
+            case "ST80ImageTarget":
+                i = 6; break;
+            default: Debug.Log("nemjo a imageTarget"); break;
+
+
+        }
     }
 
     public void isSwitchedOff(int sOff)

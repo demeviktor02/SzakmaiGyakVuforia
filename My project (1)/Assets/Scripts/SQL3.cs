@@ -25,7 +25,7 @@ public class SQL3 : MonoBehaviour
 
     public TMPro.TMP_InputField connectionStringText;
 
-    public string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
+    public string connectionString = "Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy; User ID=FSE;Password=1234";
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class SQL3 : MonoBehaviour
     {
         i = 0;
         machines.Clear();
-        machines = GetMachines(connectionString);
+        machines = GetMachines("Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123");
         Debug.Log("Lefut");
     }
 
@@ -61,7 +61,7 @@ public class SQL3 : MonoBehaviour
 
     public ObservableCollection<Machine> GetMachines(string connectionString)
     {
-        const string GetUsersQuery = "select * from [WSState]";
+        const string GetUsersQuery = "select * from [WSStates]";
 
         try
         {
