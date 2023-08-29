@@ -34,6 +34,8 @@ public class ActiveUser : MonoBehaviour
     public RawImage safetyReadyImage;
     public RawImage runImage;
 
+    public Animator manualMoveBttnAnimator;
+
 
 
     void Update()
@@ -59,6 +61,8 @@ public class ActiveUser : MonoBehaviour
         isSafetyReady(sql.machines[i].SafetyReady);
 
         isRunning(sql.machines[i].Run);
+
+        ManualMove(sql.machines[i].Mode, sql.machines[i].SwitcedOff);
     }
 
     public void FindImageTarget(string TargetName)
@@ -210,6 +214,15 @@ public class ActiveUser : MonoBehaviour
 
     }
 
+    public void ManualMove(int mode, int switchedOff)
+    {
+        if (mode == 2 && switchedOff == 0)
+            manualMoveBttnAnimator.Play("ManualMoveSetActive");
+        else manualMoveBttnAnimator.Play("ManualMoveSetNotActive");
+
+    }
+
+
     public void NextUser()
     {
         startedHomingflessing = false;
@@ -251,7 +264,6 @@ public class ActiveUser : MonoBehaviour
         {
             i = sql.machines.Count - 1;
         }
-
 
     }
 }
