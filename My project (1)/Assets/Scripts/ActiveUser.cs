@@ -62,7 +62,6 @@ public class ActiveUser : MonoBehaviour
 
         isRunning(sql.machines[i].Run);
 
-        ManualMove(sql.machines[i].Mode, sql.machines[i].SwitcedOff);
     }
 
     public void FindImageTarget(string TargetName)
@@ -214,13 +213,6 @@ public class ActiveUser : MonoBehaviour
 
     }
 
-    public void ManualMove(int mode, int switchedOff)
-    {
-        if (mode == 2 && switchedOff == 0)
-            manualMoveBttnAnimator.Play("ManualMoveSetActive");
-        else manualMoveBttnAnimator.Play("ManualMoveSetNotActive");
-
-    }
 
 
     public void NextUser()
