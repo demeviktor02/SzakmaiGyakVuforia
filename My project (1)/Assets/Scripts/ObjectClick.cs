@@ -28,10 +28,10 @@ public class ObjectClick : MonoBehaviour
             }
         }
 
-        if (LookForGameObject(out RaycastHit hit1))
-        {
-            OverGameObject(hit1.collider.gameObject);
-        }
+        //if (LookForGameObject(out RaycastHit hit1))
+        //{
+        //    OverGameObject(hit1.collider.gameObject);
+        //}
 
     }
 
