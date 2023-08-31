@@ -8,7 +8,6 @@ using UnityEngine;
 public class ManualSQL : MonoBehaviour
 {
     public ObservableCollection<ManualMovement> manuals = new ObservableCollection<ManualMovement>();
-    public string connectionString = "Data Source=DESKTOP-FRRK8IE,1433; Initial Catalog=testDatabase; User ID=sa;Password=password";
     public int i;
 
     public TMPro.TMP_Text ST050_M_P5_atrako_X_alaptText;
@@ -18,8 +17,11 @@ public class ManualSQL : MonoBehaviour
     public TMPro.TMP_Text ST050_M_P5_megfogo_alapText;
     public TMPro.TMP_Text ST050_M_P5_megfogo_munkaText;
 
-    public bool isManualPanelEnabled = false;
     public Animator manualPanelAnimator;
+
+    public SQL3 sql3;
+    public ActiveUser activeUser;
+    public bool targetFound = false;
 
     void Start()
     {
@@ -35,7 +37,7 @@ public class ManualSQL : MonoBehaviour
     {
         i = 0;
         manuals.Clear();
-        manuals = GetManual("Data Source=DESKTOP-FRRK8IE,1433; Initial Catalog=testDatabase; User ID=sa;Password=password");//"Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy; User ID=FSE;Password=1234";
+        manuals = GetManual("Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123");//"Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy; User ID=FSE;Password=1234";
         Debug.Log("Manual Lefut");
     }
 
@@ -89,21 +91,22 @@ public class ManualSQL : MonoBehaviour
         ST050_M_P5_megfogo_munkaText.text = manuals[5].value.ToString();
     }
 
-    public void IsEnabled()
+    public void TargetFoundSet()
     {
-        isManualPanelEnabled = !isManualPanelEnabled;
-    }
-
-    public void IsEnabledFalse()
-    {
-        isManualPanelEnabled = false;
+        targetFound = !targetFound;
     }
 
     public void ManualPanelPopUpAnimator()
     {
-        if (isManualPanelEnabled)
+        if (sql3.machines[activeUser.i].Mode == 2 && targetFound == true)
+        {
             manualPanelAnimator.Play("ManualPanelPopUp");
-        else manualPanelAnimator.Play("ManualPanelHide");
+        }
+        else 
+        {
+            manualPanelAnimator.Play("ManualPanelHide");
+            targetFound = false;
+        } 
     }
 }
 
