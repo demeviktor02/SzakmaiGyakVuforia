@@ -59,10 +59,10 @@ public class SettingsMenu : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(options);
-        if (resolutionData is Null)
-        {
-            resolutionDropdown.value = currentResolutionIndex;
-        }
+        //if (resolutionData is Null)
+        //{
+        //    resolutionDropdown.value = currentResolutionIndex;
+        //}
         resolutionDropdown.RefreshShownValue();
 
         IsSoundOn(isSoundOnData);
@@ -72,7 +72,15 @@ public class SettingsMenu : MonoBehaviour
         SetDarkMode(isDarkData);
         SetResolution(resolutionData);
 
-
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Screen.SetResolution(Screen.width, Screen.height, Screen.fullScreen);
+            resolutionDropdown.ClearOptions();
+            List<string> mobileOptions = new List<string>();
+            mobileOptions.Add(Screen.width + " x " + Screen.height);
+            resolutionDropdown.AddOptions(mobileOptions);
+            resolutionDropdown.RefreshShownValue();
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -118,6 +126,11 @@ public class SettingsMenu : MonoBehaviour
         FullScreentoggle.isOn = isFullscreen;
 
         isFullScreenData = isFullscreen;
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Screen.SetResolution(Screen.width, Screen.height, isFullscreen);
+        }
 
         SaveData();
     }
