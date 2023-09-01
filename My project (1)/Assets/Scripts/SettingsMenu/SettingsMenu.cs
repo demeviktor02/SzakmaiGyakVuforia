@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -11,8 +9,6 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;   
 
     Resolution[] resolutions;
-
-    //Resolution currentResolution;
 
     public Toggle FullScreentoggle;
 

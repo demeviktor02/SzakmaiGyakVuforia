@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectClick : MonoBehaviour
@@ -27,12 +25,6 @@ public class ObjectClick : MonoBehaviour
                 PressUpGameObject(hit.collider.gameObject);
             }
         }
-
-        //if (LookForGameObject(out RaycastHit hit1))
-        //{
-        //    OverGameObject(hit1.collider.gameObject);
-        //}
-
     }
 
     private bool LookForGameObject(out RaycastHit hit)

@@ -1,4 +1,3 @@
-using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
@@ -20,8 +19,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        //DontDestroyOnLoad(gameObject);
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -32,11 +29,6 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.outputAudioMixerGroup = s.mixer;
         }
-    }
-
-    void Start()
-    {
-        //Play("Theme");
     }
 
     public void Play(string name)

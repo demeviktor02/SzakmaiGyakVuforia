@@ -34,9 +34,6 @@ public class ActiveUser : MonoBehaviour
     public RawImage safetyReadyImage;
     public RawImage runImage;
 
-    public Animator manualMoveBttnAnimator;
-
-
 
     void Update()
     {

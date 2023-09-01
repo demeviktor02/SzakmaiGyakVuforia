@@ -36,7 +36,7 @@ public class Spin : MonoBehaviour
             float x = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
             float y = Input.GetAxis("Mouse Y") * rotationSpeed * Time.fixedDeltaTime;
 
-            rb.AddTorque(Vector3.back * x);
+            rb.AddTorque(Vector3.down * x);
             rb.AddTorque(Vector3.right * y);
         }
    
