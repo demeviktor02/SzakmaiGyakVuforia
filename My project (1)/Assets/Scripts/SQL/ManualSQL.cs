@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using UnityEngine;
@@ -21,7 +19,8 @@ public class ManualSQL : MonoBehaviour
 
     public SQL3 sql3;
     public ActiveUser activeUser;
-    public bool targetFound = false;
+
+    public bool isActive = false;
 
     void Start()
     {
@@ -33,6 +32,7 @@ public class ManualSQL : MonoBehaviour
         getManualValue();
         ManualPanelPopUpAnimator();
     }
+
     public void WaitForSql()
     {
         i = 0;
@@ -91,22 +91,25 @@ public class ManualSQL : MonoBehaviour
         ST050_M_P5_megfogo_munkaText.text = manuals[5].value.ToString();
     }
 
-    public void TargetFoundSet()
+    public void SetActive()
     {
-        targetFound = !targetFound;
+        isActive = true;
     }
 
+    public void SetInactive()
+    {
+        isActive = false;
+    }
     public void ManualPanelPopUpAnimator()
     {
-        if (sql3.machines[activeUser.i].Mode == 2 && targetFound == true)
+        if (sql3.machines[activeUser.i].Mode == 2 && isActive)
         {
             manualPanelAnimator.Play("ManualPanelPopUp");
         }
-        else 
+        else
         {
             manualPanelAnimator.Play("ManualPanelHide");
-            targetFound = false;
-        } 
+        }
     }
 }
 
