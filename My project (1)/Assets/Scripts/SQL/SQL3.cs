@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SQL3 : MonoBehaviour
 {
@@ -105,10 +101,10 @@ public class SQL3 : MonoBehaviour
             Debug.Log($"Exception: {eSql.Message}");
             machines.Add(new Machine("Mes", 0, 3, "ConveyorState", 0, 0, 0, 0, 0, 0, 0));
             machines.Add(new Machine("ST10", 0, 4, "ConveyorState", 0, 0, -1, -1, 0, 0, 0));
-            machines.Add(new Machine("ST20", 0, 0, "ConveyorState", 200, 0, 0, 0, 0, 0, 0));
-            machines.Add(new Machine("ST30", 0, 0, "ConveyorState", 300, 0, 0, 0, 0, 0, 0));
-            machines.Add(new Machine("ST40", 0, 0, "ConveyorState", 400, 0, 0, 0, 0, 0, 0));
-            machines.Add(new Machine("ST50", 1, 0, "ConveyorState", 400, 0, 0, 0, 1, 1, 1));
+            machines.Add(new Machine("ST20", 0, 6, "ConveyorState", 200, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST30", 0, 5, "ConveyorState", 300, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST40", 0, 2, "ConveyorState", 400, 0, 0, 0, 0, 0, 0));
+            machines.Add(new Machine("ST50", 1, 2, "ConveyorState", 400, 20, 1, 1, 1, 1, 1));
             machines.Add(new Machine("ST80", 0, 1, "ConveyorState", 400, 20, 0, 0, -1, 1, 1));
 
         }
