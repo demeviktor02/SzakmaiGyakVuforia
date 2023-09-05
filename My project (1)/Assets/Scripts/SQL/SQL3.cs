@@ -31,7 +31,7 @@ public class SQL3 : MonoBehaviour
         }
         else
         {
-            InvokeRepeating("WaitForSql", 0, 2.0f);
+            InvokeRepeating("WaitForSql", 0, 1.0f);
             activeUser.gameObject.SetActive(true);
         }
         

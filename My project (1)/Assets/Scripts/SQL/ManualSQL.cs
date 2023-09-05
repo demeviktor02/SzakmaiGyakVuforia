@@ -24,7 +24,7 @@ public class ManualSQL : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("WaitForSql", 0, 2.0f);
+        InvokeRepeating("WaitForSql", 0, 1.0f);
     }
 
     void Update()
