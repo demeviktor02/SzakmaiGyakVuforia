@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ManualSQL : MonoBehaviour
 {
-    const string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
+    const string connectionString = "Data Source=127.0.0.1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
     public ObservableCollection<ManualMovement> manuals = new ObservableCollection<ManualMovement>();
     public int i;
 
