@@ -6516,7 +6516,7 @@ Animator:
   m_GameObject: {fileID: 1043788809}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 616d6ca1862a82a4e956cce7183ed907, type: 2}
+  m_Controller: {fileID: 9100000, guid: 02952b63754a1d344b546f7cea61539d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7418,6 +7418,7 @@ MonoBehaviour:
   ST050_M_P5_megfogo_alapText: {fileID: 1528236066}
   ST050_M_P5_megfogo_munkaText: {fileID: 969548446}
   manualPanelAnimator: {fileID: 890556342}
+  movePanelAnimator: {fileID: 1043788813}
   sql3: {fileID: 1873694151}
   activeUser: {fileID: 2014230485}
   isActive: 0
