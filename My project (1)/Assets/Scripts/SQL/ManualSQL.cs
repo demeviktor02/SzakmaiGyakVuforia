@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ManualSQL : MonoBehaviour
 {
-    const string connectionString = "Data Source=127.0.0.1,1433; Initial Catalog=testDatabase; User ID=sa;Password=password";
+    const string connectionString = "Data Source=DESKTOP-B1PN1D1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
     public ObservableCollection<ManualMovement> manuals = new ObservableCollection<ManualMovement>();
     public int i;
 
@@ -19,6 +19,7 @@ public class ManualSQL : MonoBehaviour
     public TMPro.TMP_Text ST050_M_P5_megfogo_munkaText;
 
     public Animator manualPanelAnimator;
+    public Animator movePanelAnimator;
 
     public SQL3 sql3;
     public ActiveUser activeUser;
@@ -153,11 +154,11 @@ public class ManualSQL : MonoBehaviour
                 ManualsToZero();
                 updateManuals("ST050_M_P5_atrako_X_munka", 1);
                 break;
-            case "CatchBttn":
+            case "LetBttn":
                 ManualsToZero();
                 updateManuals("ST050_M_P5_megfogo_alap", 1);
                 break;
-            case "LetBttn":
+            case "CatchBttn":
                 ManualsToZero();
                 updateManuals("ST050_M_P5_megfogo_munka", 1);
                 break;
@@ -191,10 +192,12 @@ public class ManualSQL : MonoBehaviour
         if (sql3.machines[activeUser.i].Mode == 2 && isActive)
         {
             manualPanelAnimator.Play("ManualPanelPopUp");
+            movePanelAnimator.Play("MovePanelPopUp");
         }
         else
         {
             manualPanelAnimator.Play("ManualPanelHide");
+            movePanelAnimator.Play("MovePanelHide");
         }
     }
 }
