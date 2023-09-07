@@ -7,20 +7,19 @@ using UnityEngine;
 
 public class ManualSQL : MonoBehaviour
 {
-    const string connectionString = "Data Source=127.0.0.1,1433; Initial Catalog=teszt; User ID=sa;Password=123";
+    const string connectionString = "Data Source=127.0.0.1,1433; Initial Catalog=testDatabase; User ID=sa;Password=password";
     public ObservableCollection<ManualMovement> manuals = new ObservableCollection<ManualMovement>();
     public int i;
+    public GameObject speedBttn;
 
-    public TMPro.TMP_Text ST050_M_P5_atrako_X_alaptText;
-    public TMPro.TMP_Text ST050_M_P5_atrako_X_munkaText;
-    public TMPro.TMP_Text ST050_M_P5_atrako_Z_alapText;
-    public TMPro.TMP_Text ST050_M_P5_atrako_Z_munkaText;
-    public TMPro.TMP_Text ST050_M_P5_megfogo_alapText;
-    public TMPro.TMP_Text ST050_M_P5_megfogo_munkaText;
+    //public TMPro.TMP_Text ST050_M_P5_atrako_X_alaptText;
+    //public TMPro.TMP_Text ST050_M_P5_atrako_X_munkaText;
+    //public TMPro.TMP_Text ST050_M_P5_atrako_Z_alapText;
+    //public TMPro.TMP_Text ST050_M_P5_atrako_Z_munkaText;
+    //public TMPro.TMP_Text ST050_M_P5_megfogo_alapText;
+    //public TMPro.TMP_Text ST050_M_P5_megfogo_munkaText;
 
-    public Animator manualPanelAnimator;
     public Animator movePanelAnimator;
-
     public SQL3 sql3;
     public ActiveUser activeUser;
 
@@ -28,12 +27,12 @@ public class ManualSQL : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("WaitForSql", 0, 1.0f);
+        InvokeRepeating("WaitForSql", 0, 0.5f);
     }
 
     void Update()
     {
-        getManualValue();
+        //getManualValue();
         ManualPanelPopUpAnimator();
     }
 
@@ -168,15 +167,15 @@ public class ManualSQL : MonoBehaviour
     }
 
 
-    public void getManualValue()
-    {
-        ST050_M_P5_atrako_X_alaptText.text = manuals[0].value.ToString();
-        ST050_M_P5_atrako_X_munkaText.text = manuals[1].value.ToString();
-        ST050_M_P5_atrako_Z_alapText.text = manuals[2].value.ToString();
-        ST050_M_P5_atrako_Z_munkaText.text = manuals[3].value.ToString();
-        ST050_M_P5_megfogo_alapText.text = manuals[4].value.ToString();
-        ST050_M_P5_megfogo_munkaText.text = manuals[5].value.ToString();
-    }
+    //public void getManualValue()
+    //{
+    //    ST050_M_P5_atrako_X_alaptText.text = manuals[0].value.ToString();
+    //    ST050_M_P5_atrako_X_munkaText.text = manuals[1].value.ToString();
+    //    ST050_M_P5_atrako_Z_alapText.text = manuals[2].value.ToString();
+    //    ST050_M_P5_atrako_Z_munkaText.text = manuals[3].value.ToString();
+    //    ST050_M_P5_megfogo_alapText.text = manuals[4].value.ToString();
+    //    ST050_M_P5_megfogo_munkaText.text = manuals[5].value.ToString();
+    //}
 
     public void SetActive()
     {
@@ -191,12 +190,12 @@ public class ManualSQL : MonoBehaviour
     {
         if (sql3.machines[activeUser.i].Mode == 2 && isActive)
         {
-            manualPanelAnimator.Play("ManualPanelPopUp");
+            speedBttn.SetActive(true);
             movePanelAnimator.Play("MovePanelPopUp");
         }
         else
         {
-            manualPanelAnimator.Play("ManualPanelHide");
+            speedBttn.SetActive(false);
             movePanelAnimator.Play("MovePanelHide");
         }
     }

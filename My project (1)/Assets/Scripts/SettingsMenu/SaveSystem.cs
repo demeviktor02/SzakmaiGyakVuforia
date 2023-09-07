@@ -17,6 +17,19 @@ public static class SaveSystem
         stream.Close();
     }
 
+    public static void SaveAnimationSpeedSettings(SetAnimationSpeed settingsMenu)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "/AnimationSpeedSettings.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        AnimationSpeedSettingsMenu data = new AnimationSpeedSettingsMenu(settingsMenu);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
     public static SettingMenuData LoadData()
     {
         string path = Application.persistentDataPath + "/settings.data";
@@ -27,6 +40,26 @@ public static class SaveSystem
 
             SettingMenuData data = formatter.Deserialize(stream) as SettingMenuData;
             stream.Close(); 
+
+            return data;
+        }
+        else
+        {
+            Debug.Log("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static AnimationSpeedSettingsMenu LoadAnimationSpeedData()
+    {
+        string path = Application.persistentDataPath + "/AnimationSpeedSettings.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            AnimationSpeedSettingsMenu data = formatter.Deserialize(stream) as AnimationSpeedSettingsMenu;
+            stream.Close();
 
             return data;
         }

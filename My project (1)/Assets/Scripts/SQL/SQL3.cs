@@ -31,7 +31,7 @@ public class SQL3 : MonoBehaviour
         }
         else
         {
-            InvokeRepeating("WaitForSql", 0, 1.0f);
+            InvokeRepeating("WaitForSql", 0, 0.5f);
             activeUser.gameObject.SetActive(true);
         }
         
@@ -42,7 +42,7 @@ public class SQL3 : MonoBehaviour
     {
         i = 0;
         machines.Clear();
-        machines = GetMachines("Data Source=127.0.0.1,1433; Initial Catalog=teszt; User ID=sa;Password=123");//"Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy; User ID=FSE;Password=1234";
+        machines = GetMachines("Data Source=127.0.0.1,1433; Initial Catalog=testDatabase; User ID=sa;Password=password");//"Data Source=192.168.3.3,1433; Initial Catalog=FreeSlimEdgy; User ID=FSE;Password=1234";
         Debug.Log("Lefut");
     }
 
@@ -55,7 +55,7 @@ public class SQL3 : MonoBehaviour
 
     public ObservableCollection<Machine> GetMachines(string connectionString)
     {
-        const string GetUsersQuery = "select * from [WSStates]";
+        const string GetUsersQuery = "select * from [WSState]";
 
         try
         {
